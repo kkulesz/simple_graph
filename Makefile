@@ -16,8 +16,8 @@ $(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/graph.o
 $(BUILD)/vertex.o: $(SRC)/vertex.cpp $(INCLUDE)/vertex.h
 	g++ $(CPPFLAGS) -c $(SRC)/vertex.cpp -o $(BUILD)/vertex.o
 
-$(BUILD)/graph.o: $(SRC)/graph.cpp $(BUILD)/vertex.o $(INCLUDE)/graph.h $(SRC)/graph.cpp
-	g++ $(CPPFLAGS) -c $(SRC)/graph.cpp -o $(BUILD)/graph.o
+$(BUILD)/graph.o: $(SRC)/graph.tcc $(BUILD)/vertex.o $(INCLUDE)/graph.h $(SRC)/graph.tcc
+	g++ $(CPPFLAGS) -c $(SRC)/graph.tcc -o $(BUILD)/graph.o
 
 clean:
 	rm -f $(BUILD)/*.o

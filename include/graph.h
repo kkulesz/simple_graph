@@ -7,18 +7,23 @@
 template <class DataType>
 class Graph{
 public:
-    Graph(): numberOfVertexes(0){}
-    void addVertex(DataType);
-    void addEdge(Vertex<DataType>, Vertex<DataType>);
-    void removeEdge(Vertex<DataType>, Vertex<DataType>);
+
+    Graph<DataType>(): numberOfVertexes(0){}
+    ~Graph<DataType>(){}
+    void addVertex(const DataType&);
+    void addEdge( int firstIndex, int secondIndex );
+    void removeEdge( int firstIndex, int secondIndex );
+    DataType& operator[](int vertexIndex);
+    DataType operator[](int vertexIndex) const;
 private:
     std::vector<Vertex<DataType>> vertexes;
-    std::vector< std::vector<int> > adjacentList;
+    std::vector< std::vector<int> > adjacencyList;
     int numberOfVertexes;
 
     bool isEdge(int firstIndex, int secondIndex);
-    bool isVertex(DataType);//TO DO
+    //bool isVertex(DataType);//TO DO
     void removeEdgeFromVector(int firstIndex, int secondIndex);
 };
+
 
 #endif
