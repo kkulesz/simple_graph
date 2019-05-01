@@ -11,18 +11,22 @@ public:
     Graph<DataType>(): numberOfVertexes(0){}
     ~Graph<DataType>(){}
     void addVertex(const DataType&);
-    void addEdge( int firstIndex, int secondIndex );
-    void removeEdge( int firstIndex, int secondIndex );
+    bool addEdge( int firstIndex, int secondIndex );
+    bool removeEdge( int firstIndex, int secondIndex );
     DataType& operator[](int vertexIndex);
-    DataType operator[](int vertexIndex) const;
+    //DataType operator[](int vertexIndex) const;
+    int getSize() const {return numberOfVertexes;}
+
+    bool BFS( int startIndex, std::vector<int>& visitedIndexes );
+
+
 private:
     std::vector<Vertex<DataType>> vertexes;
     std::vector< std::vector<int> > adjacencyList;
     int numberOfVertexes;
 
     bool isEdge(int firstIndex, int secondIndex);
-    //bool isVertex(DataType);//TO DO
-    void removeEdgeFromVector(int firstIndex, int secondIndex);
+    bool removeEdgeFromVector(int firstIndex, int secondIndex);
 };
 
 
