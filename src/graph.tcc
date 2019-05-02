@@ -1,5 +1,3 @@
-#include "graph.h"
-
 template <class DataType>
 void Graph<DataType>::addVertex(const DataType& newElement ){
     Vertex<DataType> newVertex(newElement, this->numberOfVertexes);
@@ -41,22 +39,18 @@ bool Graph<DataType>::removeEdge( int firstIndex, int secondIndex ){
 
 template <class DataType>
 DataType& Graph<DataType>::operator[]( int vertexIndex ){
-    if(vertexIndex >= numberOfVertexes){
-        return NULL;
-    }
     return this->vertexes[vertexIndex].getData();
 }
 
-/*
 template <class DataType>
-DataType Graph<DataType>::operator[]( int vectorIndex ) const{
-    return this->vertexes[vectorIndex].getData();
+DataType Graph<DataType>::operator[]( int vertexIndex ) const{
+    return this->vertexes[vertexIndex].getConstData();
 }
-*/
+
 template <class DataType>
 bool Graph<DataType>::isEdge(int firstIndex, int secondIndex){
     if( firstIndex >= numberOfVertexes || secondIndex >= numberOfVertexes){
-        return true;;
+        return true;
     }
     int size = this->adjacencyList[firstIndex].size();
     for( int i = 0; i<size; ++i ){

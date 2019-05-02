@@ -14,7 +14,7 @@ public:
     bool addEdge( int firstIndex, int secondIndex );
     bool removeEdge( int firstIndex, int secondIndex );
     DataType& operator[](int vertexIndex);
-    //DataType operator[](int vertexIndex) const;
+    DataType operator[](int vertexIndex) const;
     int getSize() const {return numberOfVertexes;}
 
     bool BFS( int startIndex, std::vector<int>& visitedIndexes );
@@ -29,5 +29,7 @@ private:
     bool removeEdgeFromVector(int firstIndex, int secondIndex);
 };
 
+#include "graph.tcc"
+#include "bfs.tcc"
 
 #endif

@@ -6,6 +6,7 @@ class Vertex{
 public:
     Vertex(DataType newData, int initIndex): data(newData), index(initIndex){}
     DataType& getData(){ return data; }
+    DataType getConstData() const { return data; }
     int getIndex() const { return index; }
 private:
     DataType data;

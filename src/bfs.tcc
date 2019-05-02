@@ -1,5 +1,3 @@
-#include "graph.h"
-
 template <class DataType>
 bool Graph<DataType>::BFS( int startIndex, std::vector<int>& visitedIndexes){
     if( startIndex >= numberOfVertexes){

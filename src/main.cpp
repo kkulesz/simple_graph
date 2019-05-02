@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string.h>
-#include "graph.tcc"//need to be this way in order to compilator know the implementation
-#include "bfs.tcc"
+#include "graph.h"//need to be this way in order to compilator know the implementation
 
 template<class DataType>
 void printVertexes(Graph<DataType> graph_to_print);
 
 int main(){
     Graph<int> int_graph;
+
     int_graph.addVertex(13);
     int_graph.addVertex(10);
     int_graph.addVertex(251);
@@ -17,8 +17,22 @@ int main(){
     int_graph.addVertex(1001);
     int_graph.addEdge(0,3);
 
+    int_graph.addVertex(81);
+    int_graph.addVertex(13);
+    int_graph.addVertex(98);
+    int_graph.addVertex(-10);
+    int_graph.addEdge(4,5);
+    int_graph.addEdge(5,7);
+    int_graph.addEdge(6,7);
+    int_graph.addEdge(0,7);
+
+    printVertexes(int_graph);
+
+
+
+
     std::vector<int> vec;
-    int_graph.BFS(3, vec);
+    int_graph.BFS(4, vec);
 
     int length = vec.size();
     for( int i=0; i<length; ++i){
