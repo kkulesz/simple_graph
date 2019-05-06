@@ -10,7 +10,7 @@ void Graph<DataType>::addVertex(const DataType& newElement ){
 
 template <class DataType>
 bool Graph<DataType>::addEdge( int firstIndex, int secondIndex ){
-    if( firstIndex == secondIndex || firstIndex >= numberOfVertexes || secondIndex >= numberOfVertexes){
+    if( !checkIndex(firstIndex) || !checkIndex(secondIndex) || firstIndex==secondIndex ){
         return false;
     }
     if( this->isEdge(firstIndex, secondIndex) ){
@@ -25,10 +25,10 @@ bool Graph<DataType>::addEdge( int firstIndex, int secondIndex ){
 
 template <class DataType>
 bool Graph<DataType>::removeEdge( int firstIndex, int secondIndex ){
-    if( firstIndex >= numberOfVertexes || secondIndex >= numberOfVertexes){
+    if( !checkIndex(firstIndex) || !checkIndex(secondIndex) ){
         return false;
     }
-    if( this->isEdge(firstIndex, secondIndex) ){
+    if( !this->isEdge(firstIndex, secondIndex) ){
         return true;
     }else{
         this->removeEdgeFromVector(firstIndex, secondIndex);
@@ -49,9 +49,6 @@ DataType Graph<DataType>::operator[]( int vertexIndex ) const{
 
 template <class DataType>
 bool Graph<DataType>::isEdge(int firstIndex, int secondIndex){
-    if( firstIndex >= numberOfVertexes || secondIndex >= numberOfVertexes){
-        return true;
-    }
     int size = this->adjacencyList[firstIndex].size();
     for( int i = 0; i<size; ++i ){
         if( this->adjacencyList[firstIndex][i] == secondIndex ){
@@ -63,9 +60,6 @@ bool Graph<DataType>::isEdge(int firstIndex, int secondIndex){
 
 template <class DataType>
 bool Graph<DataType>::removeEdgeFromVector(int firstIndex, int secondIndex){
-    if( firstIndex >= numberOfVertexes || secondIndex >= numberOfVertexes){
-        return false;
-    }
     int size = this->adjacencyList[firstIndex].size();
     for( int i=0; i<size; ++i){
         if( this->adjacencyList[firstIndex][i] == secondIndex ){
@@ -75,4 +69,13 @@ bool Graph<DataType>::removeEdgeFromVector(int firstIndex, int secondIndex){
     }
 
     return true;
+}
+
+template <class DataType>
+bool Graph<DataType>::checkIndex( int indexToCheck ){
+    if( indexToCheck >= this->numberOfVertexes || indexToCheck < 0){
+        return false;
+    }else{
+        return true;
+    }
 }

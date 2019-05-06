@@ -1,6 +1,6 @@
 template <class DataType>
 bool Graph<DataType>::BFS( int startIndex, std::vector<int>& visitedIndexes){
-    if( startIndex >= numberOfVertexes){
+    if( !checkIndex(startIndex) ){
         return false;
     }
     bool visited[numberOfVertexes];
@@ -27,4 +27,21 @@ bool Graph<DataType>::BFS( int startIndex, std::vector<int>& visitedIndexes){
         BFS_queue.erase( BFS_queue.begin() );
     }
     return true;
+}
+
+
+template <class DataType>
+bool Graph<DataType>::areConnected( int firstIndex, int secondIndex ){
+    if( !checkIndex(firstIndex) || !checkIndex(secondIndex) ){
+        return false;
+    }
+    std::vector<int> connectedVertexesIndexes;
+    this->BFS(firstIndex, connectedVertexesIndexes);
+    int length = connectedVertexesIndexes.size();
+    for( int i = 0; i<length; ++i){
+        if( secondIndex == connectedVertexesIndexes[i]){
+            return true;
+        }
+    }
+    return false;
 }

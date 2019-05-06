@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include "graph.h"//need to be this way in order to compilator know the implementation
+#include "graph.h"
 
 template<class DataType>
 void printVertexes(Graph<DataType> graph_to_print);
@@ -28,16 +28,20 @@ int main(){
 
     printVertexes(int_graph);
 
+    Graph<std::string> string_graph;
+    string_graph.addVertex("xD");
+    string_graph.addVertex("Kasiol");
+    string_graph.addVertex(":(");
+    string_graph.addVertex(":(");
+    string_graph.addVertex(":(");
+    string_graph.addEdge(0,1);
+    string_graph.addEdge(1,2);
+    string_graph.addEdge(2,3);
+    string_graph.addEdge(3,4);
+    if( string_graph.areConnected(0,4) )
+        std::cout<<"TAK"<<std::endl;
+    printVertexes(string_graph);
 
-
-
-    std::vector<int> vec;
-    int_graph.BFS(4, vec);
-
-    int length = vec.size();
-    for( int i=0; i<length; ++i){
-        std::cout<<vec[i]<<std::endl;
-    }
 
     return 0;
 }

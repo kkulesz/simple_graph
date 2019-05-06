@@ -17,7 +17,7 @@ public:
     DataType operator[](int vertexIndex) const;
     int getSize() const {return numberOfVertexes;}
 
-    bool BFS( int startIndex, std::vector<int>& visitedIndexes );
+    bool areConnected( int firstIndex, int secondIndex);
 
 
 private:
@@ -27,6 +27,8 @@ private:
 
     bool isEdge(int firstIndex, int secondIndex);
     bool removeEdgeFromVector(int firstIndex, int secondIndex);
+    bool BFS( int startIndex, std::vector<int>& visitedIndexes );
+    bool checkIndex( int indexToCheck );
 };
 
 #include "graph.tcc"
