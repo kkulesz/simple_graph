@@ -42,7 +42,19 @@ TEST_CASE( "graph", "[graph], [functions]" ){
 
         int_graph.removeEdge(1,2);
         REQUIRE( !int_graph.areConnected(0,3) );
-
+        int_graph.removeEdge(0,1);
+        int_graph.removeEdge(2,3);
+    }
+    SECTION("getNeighbours()"){
+        int_graph.addEdge(0,1);
+        int_graph.addEdge(0,2);
+        int_graph.addEdge(0,3);
+        std::vector<int> neighbours;
+        REQUIRE( int_graph.getNeighbours(0,neighbours) );
+        REQUIRE( !int_graph.getNeighbours(100, neighbours) );
+        REQUIRE( neighbours[0] == 1 );
+        REQUIRE( neighbours[1] == 2 );
+        REQUIRE( neighbours[2] == 3 );
     }
 
     SECTION("adding edge between non-existing vertexes "){
