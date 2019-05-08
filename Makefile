@@ -10,6 +10,12 @@ TEST:= test
 $(BIN)/program: $(BUILD) $(BIN) $(BUILD)/vertex.o $(BUILD)/graph.o $(BUILD)/graph_manager_interface.o $(BUILD)/main.o
 	g++ $(BUILD)/main.o -o $(BIN)/program
 
+$(BUILD):
+	$(MKDIR_P) $(BUILD)
+
+$(BIN):
+	$(MKDIR_P) $(BIN)
+
 $(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/graph_manager_interface.o
 	g++ $(CPPFLAGS) -c $(SRC)/main.cpp -o $(BUILD)/main.o
 
@@ -21,12 +27,6 @@ $(BUILD)/graph.o: $(BUILD)/vertex.o $(SRC)/graph.tcc $(SRC)/bfs.tcc $(INCLUDE)/g
 
 $(BUILD)/vertex.o: $(SRC)/vertex.cpp $(INCLUDE)/vertex.h
 	g++ $(CPPFLAGS) -c $(SRC)/vertex.cpp -o $(BUILD)/vertex.o
-
-$(BUILD):
-	$(MKDIR_P) $(BUILD)
-
-$(BIN):
-	$(MKDIR_P) $(BIN)
 
 
 #####

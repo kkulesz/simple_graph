@@ -48,6 +48,15 @@ DataType Graph<DataType>::operator[]( int vertexIndex ) const{
 }
 
 template <class DataType>
+bool Graph<DataType>::getNeighbours( int vertexIndex, std::vector<int>& neighbourVector ){
+    if( !checkIndex_(vertexIndex) ){
+        return false;
+    }
+    neighbourVector = adjacencyList_[vertexIndex];
+    return true;
+}
+
+template <class DataType>
 bool Graph<DataType>::isEdge_(int firstIndex, int secondIndex){
     int size = this->adjacencyList_[firstIndex].size();
     for( int i = 0; i<size; ++i ){

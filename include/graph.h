@@ -16,8 +16,10 @@ public:
     DataType& operator[](int vertexIndex);
     DataType operator[](int vertexIndex) const;
     int getSize() const {return numberOfVertexes_;}
+    bool getNeighbours( int vertexNumber, std::vector<int>& neightboursVector );
 
     bool areConnected( int firstIndex, int secondIndex);
+
 
 
 private:
