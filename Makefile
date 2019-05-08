@@ -22,6 +22,12 @@ $(BUILD)/graph.o: $(BUILD)/vertex.o $(SRC)/graph.tcc $(SRC)/bfs.tcc $(INCLUDE)/g
 $(BUILD)/vertex.o: $(SRC)/vertex.cpp $(INCLUDE)/vertex.h
 	g++ $(CPPFLAGS) -c $(SRC)/vertex.cpp -o $(BUILD)/vertex.o
 
+$(BUILD):
+	$(MKDIR_P) $(BUILD)
+
+$(BIN):
+	$(MKDIR_P) $(BIN)
+
 
 #####
 clean:
