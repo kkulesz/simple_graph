@@ -1,4 +1,5 @@
-#include "interface.h"
+#include "graph_manager_interface.h"
+
 
 int main(){
     Interface graph_manager;

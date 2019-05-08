@@ -1,23 +1,23 @@
 template <class DataType>
 void Graph<DataType>::addVertex(const DataType& newElement ){
-    Vertex<DataType> newVertex(newElement, this->numberOfVertexes);
-    this->vertexes.push_back(newVertex);
-    ++(this->numberOfVertexes);
+    Vertex<DataType> newVertex(newElement, this->numberOfVertexes_);
+    this->vertexes_.push_back(newVertex);
+    ++(this->numberOfVertexes_);
 
     std::vector<int> newAdjacencyList;
-    this->adjacencyList.push_back( newAdjacencyList );
+    this->adjacencyList_.push_back( newAdjacencyList );
 }
 
 template <class DataType>
 bool Graph<DataType>::addEdge( int firstIndex, int secondIndex ){
-    if( !checkIndex(firstIndex) || !checkIndex(secondIndex) || firstIndex==secondIndex ){
+    if( !checkIndex_(firstIndex) || !checkIndex_(secondIndex) || firstIndex==secondIndex ){
         return false;
     }
-    if( this->isEdge(firstIndex, secondIndex) ){
+    if( this->isEdge_(firstIndex, secondIndex) ){
         return true;
     }else{
-        this->adjacencyList[firstIndex].push_back(secondIndex);
-        this->adjacencyList[secondIndex].push_back(firstIndex);
+        this->adjacencyList_[firstIndex].push_back(secondIndex);
+        this->adjacencyList_[secondIndex].push_back(firstIndex);
     }
 
     return true;
@@ -25,33 +25,33 @@ bool Graph<DataType>::addEdge( int firstIndex, int secondIndex ){
 
 template <class DataType>
 bool Graph<DataType>::removeEdge( int firstIndex, int secondIndex ){
-    if( !checkIndex(firstIndex) || !checkIndex(secondIndex) ){
+    if( !checkIndex_(firstIndex) || !checkIndex_(secondIndex) ){
         return false;
     }
-    if( !this->isEdge(firstIndex, secondIndex) ){
+    if( !this->isEdge_(firstIndex, secondIndex) ){
         return true;
     }else{
-        this->removeEdgeFromVector(firstIndex, secondIndex);
-        this->removeEdgeFromVector(secondIndex, firstIndex);
+        this->removeEdgeFromVector_(firstIndex, secondIndex);
+        this->removeEdgeFromVector_(secondIndex, firstIndex);
     }
     return true;
 }
 
 template <class DataType>
 DataType& Graph<DataType>::operator[]( int vertexIndex ){
-    return this->vertexes[vertexIndex].getData();
+    return this->vertexes_[vertexIndex].getData();
 }
 
 template <class DataType>
 DataType Graph<DataType>::operator[]( int vertexIndex ) const{
-    return this->vertexes[vertexIndex].getConstData();
+    return this->vertexes_[vertexIndex].getConstData();
 }
 
 template <class DataType>
-bool Graph<DataType>::isEdge(int firstIndex, int secondIndex){
-    int size = this->adjacencyList[firstIndex].size();
+bool Graph<DataType>::isEdge_(int firstIndex, int secondIndex){
+    int size = this->adjacencyList_[firstIndex].size();
     for( int i = 0; i<size; ++i ){
-        if( this->adjacencyList[firstIndex][i] == secondIndex ){
+        if( this->adjacencyList_[firstIndex][i] == secondIndex ){
             return true;
         }
     }
@@ -59,11 +59,11 @@ bool Graph<DataType>::isEdge(int firstIndex, int secondIndex){
 }
 
 template <class DataType>
-bool Graph<DataType>::removeEdgeFromVector(int firstIndex, int secondIndex){
-    int size = this->adjacencyList[firstIndex].size();
+bool Graph<DataType>::removeEdgeFromVector_(int firstIndex, int secondIndex){
+    int size = this->adjacencyList_[firstIndex].size();
     for( int i=0; i<size; ++i){
-        if( this->adjacencyList[firstIndex][i] == secondIndex ){
-            this->adjacencyList[firstIndex].erase( this->adjacencyList[firstIndex].begin() + i);
+        if( this->adjacencyList_[firstIndex][i] == secondIndex ){
+            this->adjacencyList_[firstIndex].erase( this->adjacencyList_[firstIndex].begin() + i);
             break;
         }
     }
@@ -72,8 +72,8 @@ bool Graph<DataType>::removeEdgeFromVector(int firstIndex, int secondIndex){
 }
 
 template <class DataType>
-bool Graph<DataType>::checkIndex( int indexToCheck ){
-    if( indexToCheck >= this->numberOfVertexes || indexToCheck < 0){
+bool Graph<DataType>::checkIndex_( int indexToCheck ){
+    if( indexToCheck >= this->numberOfVertexes_ || indexToCheck < 0){
         return false;
     }else{
         return true;
