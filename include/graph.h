@@ -28,7 +28,7 @@ private:
     int numberOfVertexes_;
 
     bool isEdge_(int firstIndex, int secondIndex);
-    bool removeEdgeFromVector_(int firstIndex, int secondIndex);
+    void removeEdgeFromVector_(int firstIndex, int secondIndex);
     bool BFS_( int startIndex, std::vector<int>& visitedIndexes );
     bool checkIndex_( int indexToCheck );
 };

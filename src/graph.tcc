@@ -68,7 +68,7 @@ bool Graph<DataType>::isEdge_(int firstIndex, int secondIndex){
 }
 
 template <class DataType>
-bool Graph<DataType>::removeEdgeFromVector_(int firstIndex, int secondIndex){
+void Graph<DataType>::removeEdgeFromVector_(int firstIndex, int secondIndex){
     int size = this->adjacencyList_[firstIndex].size();
     for( int i=0; i<size; ++i){
         if( this->adjacencyList_[firstIndex][i] == secondIndex ){
@@ -76,8 +76,6 @@ bool Graph<DataType>::removeEdgeFromVector_(int firstIndex, int secondIndex){
             break;
         }
     }
-
-    return true;
 }
 
 template <class DataType>

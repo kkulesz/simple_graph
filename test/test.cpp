@@ -29,12 +29,12 @@ TEST_CASE( "graph", "[graph], [functions]" ){
     }
 
     SECTION("areConnected() and BFS()"){
-        int_graph.addEdge(0,1);
-        REQUIRE( int_graph.areConnected(0,1) );
-
-        int_graph.removeEdge(0,1);
-        REQUIRE( !int_graph.areConnected(0,1) );
-
+        SECTION("adding and removing edge"){
+            int_graph.addEdge(0,1);
+            REQUIRE( int_graph.areConnected(0,1) );
+            int_graph.removeEdge(0,1);
+            REQUIRE( !int_graph.areConnected(0,1) );
+        }
         int_graph.addEdge(0,1);
         int_graph.addEdge(1,2);
         int_graph.addEdge(2,3);
@@ -45,6 +45,14 @@ TEST_CASE( "graph", "[graph], [functions]" ){
         int_graph.removeEdge(0,1);
         int_graph.removeEdge(2,3);
     }
+
+    SECTION("adding edge between non-existing vertexes "){
+        REQUIRE( !int_graph.addEdge( 100,101 ) );
+    }
+    SECTION("removing edge between non-existing vertexes "){
+        REQUIRE( !int_graph.removeEdge(100,101) );
+    }
+
     SECTION("getNeighbours()"){
         int_graph.addEdge(0,1);
         int_graph.addEdge(0,2);
@@ -55,12 +63,5 @@ TEST_CASE( "graph", "[graph], [functions]" ){
         REQUIRE( neighbours[0] == 1 );
         REQUIRE( neighbours[1] == 2 );
         REQUIRE( neighbours[2] == 3 );
-    }
-
-    SECTION("adding edge between non-existing vertexes "){
-        REQUIRE( !int_graph.addEdge( 100,101 ) );
-    }
-    SECTION("removing edge between non-existing vertexes "){
-        REQUIRE( !int_graph.removeEdge(100,101) );
     }
 }
